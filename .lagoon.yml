@@ -3,7 +3,7 @@ docker-compose-yaml: docker-compose.yml
 project: 'privategpt'
 
 container-registries:
-  github-container-registry:
+  ghcr:
     description: "GitHub Container Registry for private packages"
     url: ghcr.io
 
