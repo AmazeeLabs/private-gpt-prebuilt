@@ -5,8 +5,6 @@ project: 'privategpt'
 container-registries:
   github-container-registry:
     description: "GitHub Container Registry for private packages"
-    username: pmelab
-    password: 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
     url: ghcr.io
 
 
