@@ -39,16 +39,18 @@ tasks:
         command: source /home/.bashrc && drush -y deploy
         service: cli
 
-cronjobs:
-  - name: drush cron
-    schedule: "*/30 * * * *"
-    command: drush cron
-    service: cli
-  - name: Process MCP document embeddings queue
-    schedule: "*/2 * * * *"
-    command: drush --root=/app/ queue:run mcp_document_embeddings_queue
-    service: cli
-  - name: Process MCP document AI queue
-    schedule: "*/5 * * * *"
-    command: drush --root=/app/ queue:run mcp_document_file_processor_ai
-    service: cli
+environments:
+  prod:
+    cronjobs:
+      - name: drush cron
+        schedule: "*/30 * * * *"
+        command: drush --root=/app/ cron
+        service: cli
+      - name: Process MCP document embeddings queue
+        schedule: "*/2 * * * *"
+        command: drush --root=/app/ queue:run mcp_document_embeddings_queue
+        service: cli
+      - name: Process MCP document AI queue
+        schedule: "*/5 * * * *"
+        command: drush --root=/app/ queue:run mcp_document_file_processor_ai
+        service: cli
